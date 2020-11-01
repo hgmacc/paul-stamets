@@ -166,9 +166,8 @@ def load_mush_data(file_path):
 def knn_model(tr_data, tr_label, test_data, test_label):
     knn_hits = []  # to store knn prediction hits
     # Running knn model for (1, 20)
-    for i in range(1, 21):
-        if i == 1:
-            i = 30
+    for i in [1, 5, 10]:
+
         knn = KNeighborsClassifier(n_neighbors=i, n_jobs=-1)
         knn.fit(tr_data, tr_label)
         hits = 0
@@ -202,6 +201,7 @@ def question1(file_path):
     knn_error = []
     for i in knn_hits:
         knn_error.append((1 - (i / 500)) * 100)  # list of KNN error values
+    print(knn_error)
 
 
 def question2(file_path):
@@ -238,13 +238,17 @@ def question3(file_path):
         knn_error.append((1 - (i / 4062)) * 100)  # list of KNN error values
 
 
+for i in range(10):
+    print("l")
+
+
 if __name__ == "__main__":
     # setup / helper function calls here, if using
-    # question1("NumberRecognition.mat")
+    question1("/Users/hannahmacdonell/PycharmProjects/paul-stamets/data/NumberRecognition.mat")
     """
     ===================================================================================================================
     DEDUCTION (-1): No Dead Code
     ===================================================================================================================
     """
-    3question2("/Users/hannahmacdonell/PycharmProjects/paul-stamets/mushroom.csv")
+    # question2("/Users/hannahmacdonell/PycharmProjects/paul-stamets/mushroom.csv")
     # question3("data/mushroom.csv")

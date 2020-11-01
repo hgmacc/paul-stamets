@@ -200,3 +200,33 @@ def save_data_kfold(kfold_scores: pd.DataFrame) -> None:
     outfile = Path(__file__).resolve().parent / "kfold_data.json"
     df.to_json(outfile)
     print(f"K-Fold error rates for individual dataset successfully saved to {outfile}")
+
+# ORIGINAL CODE FOR K-FOLD
+    """
+        # scores = cross_val_score(model, X, y, scoring="accuracy", cv=cv, n_jobs=-1)
+    scores: List[int] = []
+    for train_index, test_index in skf.split(data, labels):
+        train_data, test_data = data[train_index], data[test_index]
+        train_label, test_label = labels[train_index], labels[test_index]
+        model = SVC
+
+        # SVM Model
+        svmodel = SVC(random_state=42, gamma="auto")
+        svmodel.fit(test_data, test_label)
+        svmodel.score(test_data, test_label) * 100
+
+        # Random-forest model
+        rf = RF(n_estimators=5, random_state=42)
+        rf.fit(test_data, test_label)
+        rf.score(test_data, test_label) * 100
+
+        # KNN model with n set to 1, 5, and 10
+        knn_scores = []
+        for i in [1, 5, 10]:
+            knn = KNeighborsClassifier(n_neighbors=i, n_jobs=-1)
+            knn.fit(train_data, train_label)
+            accuracy = knn.score(test_data, test_label)
+            knn_scores.append(accuracy)
+
+        # scores.append()
+    """
