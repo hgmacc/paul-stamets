@@ -14,6 +14,18 @@ from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier as RF
 from sklearn.model_selection import cross_validate, train_test_split, StratifiedKFold, StratifiedShuffleSplit
 
+"""
+def load_num_test_data(file_path: str) -> ndarray:
+
+
+    # Loading .mat data and extracting X data to a numpy array
+    num_dic: Dict[str, ndarray] = sio.loadmat(file_path)
+
+    # reshaping data to (5000, 784)
+    num_data: ndarray = num_dic["X_test"].reshape([np.prod(num_dic["X_test"].shape[:2]), num_dic["X_test"].shape[-1]]).T
+    return num_data
+"""
+
 
 """
 ===================================================================================================================
@@ -145,7 +157,7 @@ def load_mush_data(file_path):
     return tr_data, tr_label, test_data, test_label
 
 ### FOR A2 ###
-
+"""
 def save_mnist_kfold(kfold_scores: pd.DataFrame) -> None:
     import numpy as np
     from pathlib import Path
@@ -201,6 +213,8 @@ def save_data_kfold(kfold_scores: pd.DataFrame) -> None:
     df.to_json(outfile)
     print(f"K-Fold error rates for individual dataset successfully saved to {outfile}")
 
+"""
+
 # ORIGINAL CODE FOR K-FOLD
     """
         # scores = cross_val_score(model, X, y, scoring="accuracy", cv=cv, n_jobs=-1)
@@ -230,3 +244,12 @@ def save_data_kfold(kfold_scores: pd.DataFrame) -> None:
 
         # scores.append()
     """
+
+# ANN model
+"""
+def ANN_model(data, labels: np.ndarray) -> pd.DataFrame:
+    ann = MLPClassifier(hidden_layer_sizes=5, activation="tanh", solver="lbfgs")
+    # Train test split here
+    ann.fit(X_train, y_train)
+    ann.predict(X_test)
+"""
